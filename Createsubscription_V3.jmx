@@ -1,0 +1,729 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="5.0" jmeter="5.4.1">
+  <hashTree>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Test Plan" enabled="true">
+      <stringProp name="TestPlan.comments"></stringProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.tearDown_on_shutdown">true</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+        <collectionProp name="Arguments.arguments"/>
+      </elementProp>
+      <stringProp name="TestPlan.user_define_classpath"></stringProp>
+    </TestPlan>
+    <hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Thread Group" enabled="true">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+        <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
+      </ThreadGroup>
+      <hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="SaaS_SSCP_S003_SnB_V3_T01_ApplicationToken" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">apigw-test.vmware.com</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">lt/v1/m0/api/token/application</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <BoundaryExtractor guiclass="BoundaryExtractorGui" testclass="BoundaryExtractor" testname="C_Access_Token" enabled="true">
+            <stringProp name="BoundaryExtractor.useHeaders">false</stringProp>
+            <stringProp name="BoundaryExtractor.refname">C_Access_Token</stringProp>
+            <stringProp name="BoundaryExtractor.lboundary">&quot;access_token&quot;: &quot;</stringProp>
+            <stringProp name="BoundaryExtractor.rboundary">&quot;,</stringProp>
+            <stringProp name="BoundaryExtractor.default"></stringProp>
+            <boolProp name="BoundaryExtractor.default_empty_value">false</boolProp>
+            <stringProp name="BoundaryExtractor.match_number">1</stringProp>
+          </BoundaryExtractor>
+          <hashTree/>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Authorization</stringProp>
+                <stringProp name="Header.value">Basic YTIwMmIxYzE4Yjc1NDRlNTgwODA4OWIwOTY5ZmQ5NTc6NmM1NjExMWM0YTFlNGU5YThCRUUwQzg0N0UwRDRGRUY=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="SaaS_SSCP_S003_SnB_V3_T02_CreateOrg_SAP" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+&quot;orgId&quot;: &quot;CSPSNBE_0721800${__UUID()}&quot;,&#xd;
+&quot;orgName&quot;: &quot;system-org-gaz-uat&quot;,&#xd;
+&quot;orgDisplayName&quot;: &quot;Platform org&quot;,&#xd;
+&quot;anniversaryBillingDay&quot;: &quot;5&quot;,&#xd;
+&quot;currency&quot;: &quot;USD&quot;,&#xd;
+&quot;operatingUnit&quot;: &quot;US&quot;,&#xd;
+&quot;contacts&quot;: [&#xd;
+  {&#xd;
+    &quot;contactType&quot;: &quot;SHIPTO&quot;,&#xd;
+    &quot;addressLine1&quot;: &quot;3304 HillView Ave&quot;,&#xd;
+    &quot;addressLine2&quot;: &quot;&quot;,&#xd;
+    &quot;addressLine3&quot;: &quot;&quot;,&#xd;
+    &quot;city&quot;: &quot;Palo Alto&quot;,&#xd;
+    &quot;county&quot;: &quot;Johnson&quot;,&#xd;
+    &quot;state&quot;: &quot;CA&quot;,&#xd;
+    &quot;zipCode&quot;: &quot;94304&quot;,&#xd;
+    &quot;country&quot;: &quot;US&quot;,&#xd;
+    &quot;companyName&quot;: &quot;VMWare&quot;,&#xd;
+    &quot;firstName&quot;: &quot;Brandon&quot;,&#xd;
+    &quot;lastName&quot;: &quot;Mayor&quot;,&#xd;
+    &quot;nickName&quot;: &quot;&quot;,&#xd;
+    &quot;email&quot;: &quot;brandonm@vmware.com&quot;,&#xd;
+    &quot;workPhone&quot;: &quot;9132442626&quot;,&#xd;
+    &quot;homePhone&quot;: &quot;&quot;,&#xd;
+    &quot;mobilePhone&quot;: &quot;&quot;&#xd;
+  },&#xd;
+  {&#xd;
+    &quot;contactType&quot;: &quot;SOLDTO&quot;,&#xd;
+  &quot;addressLine1&quot;: &quot;3304 HillView Ave&quot;,&#xd;
+    &quot;addressLine2&quot;: &quot;&quot;,&#xd;
+    &quot;addressLine3&quot;: &quot;&quot;,&#xd;
+    &quot;city&quot;: &quot;Palo Alto&quot;,&#xd;
+    &quot;county&quot;: &quot;Johnson&quot;,&#xd;
+    &quot;state&quot;: &quot;CA&quot;,&#xd;
+    &quot;zipCode&quot;: &quot;94304&quot;,&#xd;
+    &quot;country&quot;: &quot;US&quot;,&#xd;
+    &quot;companyName&quot;: &quot;VMWare&quot;,&#xd;
+    &quot;firstName&quot;: &quot;Brandon&quot;,&#xd;
+    &quot;lastName&quot;: &quot;Mayor&quot;,&#xd;
+    &quot;nickName&quot;: &quot;&quot;,&#xd;
+    &quot;email&quot;: &quot;brandonm@vmware.com&quot;,&#xd;
+    &quot;workPhone&quot;: &quot;9999999999&quot;,&#xd;
+    &quot;homePhone&quot;: &quot;&quot;,&#xd;
+    &quot;mobilePhone&quot;: &quot;&quot;&#xd;
+  } ]&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">apigw-test.vmware.com</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">lt/spi/v1/organizations</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">csp-request-id</stringProp>
+                <stringProp name="Header.value">12345623</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Authorization</stringProp>
+                <stringProp name="Header.value">Bearer ${C_Access_Token}</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="SaaS_SSCP_S003_SnB_V3_T03_Addpymentmethod_SAP" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+&quot;source&quot;: &quot;CSP&quot;,&#xd;
+ &quot;entityType&quot;: &quot;ORG&quot;,&#xd;
+&quot;entityValue&quot;: &quot;CSPSNBE_0721800${__UUID()}&quot;,&#xd;
+  &quot;operatingUnit&quot;: {&#xd;
+      &quot;ou&quot;: &quot;US&quot;,&#xd;
+      &quot;currency&quot;: &quot;USD&quot;&#xd;
+      },&#xd;
+      &quot;paymentMethods&quot;: [&#xd;
+          {&#xd;
+              &quot;pmType&quot;: &quot;${P_Paymentmethod_Type}&quot;,&#xd;
+&quot;paymentMethodOptionId&quot;: &quot;${P_Paymentoptionid}&quot;,&#xd;
+&quot;setterCustomerNumber&quot;: &quot;${P_CustomerNum}&quot;,&#xd;
+&quot;defaultFlag&quot;: true,&#xd;
+&quot;enabledFlag&quot;: true,&#xd;
+&quot;additionalAttributes&quot;: {&#xd;
+   &quot;&lt; * &gt;&quot;: &quot;string&quot;&#xd;
+}&#xd;
+&#xd;
+          }&#xd;
+          ]&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">apigw-test.vmware.com</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">lt/v1/m4/api/payments/payment/methods</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Authorization</stringProp>
+                <stringProp name="Header.value">Bearer ${C_Access_Token}</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <UserParameters guiclass="UserParametersGui" testclass="UserParameters" testname="User Parameters" enabled="true">
+            <collectionProp name="UserParameters.names">
+              <stringProp name="1571310905">P_CustomerNum</stringProp>
+              <stringProp name="1987610183">P_Paymentoptionid</stringProp>
+              <stringProp name="1897709217">P_Paymentmethod_Type</stringProp>
+            </collectionProp>
+            <collectionProp name="UserParameters.thread_values">
+              <collectionProp name="-1587357978">
+                <stringProp name="1550374893">1954170660</stringProp>
+                <stringProp name="719554914">10585203</stringProp>
+                <stringProp name="-1871861028">PAY BY INVOICE</stringProp>
+              </collectionProp>
+              <collectionProp name="-404699023">
+                <stringProp name="-383272377">1207358368</stringProp>
+                <stringProp name="719586629">10586405</stringProp>
+                <stringProp name="-1871861028">PAY BY INVOICE</stringProp>
+              </collectionProp>
+              <collectionProp name="-46492817">
+                <stringProp name="-1946900096">1158038200</stringProp>
+                <stringProp name="719586630">10586406</stringProp>
+                <stringProp name="-1871861028">PAY BY INVOICE</stringProp>
+              </collectionProp>
+            </collectionProp>
+            <boolProp name="UserParameters.per_iteration">true</boolProp>
+          </UserParameters>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="SaaS_SSCP_S003_SnB_V3_T04_Addpymentmethod_SAP_CSPSID" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+&quot;source&quot;: &quot;CSP&quot;,&#xd;
+ &quot;entityType&quot;: &quot;CSP-SID&quot;,&#xd;
+&quot;entityValue&quot;: &quot;CSPSNBE_0721800${__UUID()}&quot;,&#xd;
+  &quot;operatingUnit&quot;: {&#xd;
+      &quot;ou&quot;: &quot;US&quot;,&#xd;
+      &quot;currency&quot;: &quot;USD&quot;&#xd;
+      },&#xd;
+      &quot;paymentMethods&quot;: [&#xd;
+          {&#xd;
+              &quot;pmType&quot;: &quot;${P_Paymentmethod_Type}&quot;,&#xd;
+&quot;paymentMethodOptionId&quot;: &quot;${P_Paymentoptionid}&quot;,&#xd;
+&quot;setterCustomerNumber&quot;: &quot;${P_CustomerNum}&quot;,&#xd;
+&quot;defaultFlag&quot;: true,&#xd;
+&quot;enabledFlag&quot;: true,&#xd;
+&quot;additionalAttributes&quot;: {&#xd;
+   &quot;&lt; * &gt;&quot;: &quot;string&quot;&#xd;
+}&#xd;
+&#xd;
+          }&#xd;
+          ]&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">apigw-test.vmware.com</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">lt/v1/m4/api/payments/payment/methods</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Authorization</stringProp>
+                <stringProp name="Header.value">Bearer ${C_Access_Token}</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <UserParameters guiclass="UserParametersGui" testclass="UserParameters" testname="User Parameters" enabled="true">
+            <collectionProp name="UserParameters.names">
+              <stringProp name="1571310905">P_CustomerNum</stringProp>
+              <stringProp name="1987610183">P_Paymentoptionid</stringProp>
+              <stringProp name="1897709217">P_Paymentmethod_Type</stringProp>
+            </collectionProp>
+            <collectionProp name="UserParameters.thread_values">
+              <collectionProp name="-1587357978">
+                <stringProp name="1550374893">1954170660</stringProp>
+                <stringProp name="719554914">10585203</stringProp>
+                <stringProp name="-1871861028">PAY BY INVOICE</stringProp>
+              </collectionProp>
+              <collectionProp name="-404699023">
+                <stringProp name="-383272377">1207358368</stringProp>
+                <stringProp name="719586629">10586405</stringProp>
+                <stringProp name="-1871861028">PAY BY INVOICE</stringProp>
+              </collectionProp>
+              <collectionProp name="-46492817">
+                <stringProp name="-1946900096">1158038200</stringProp>
+                <stringProp name="719586630">10586406</stringProp>
+                <stringProp name="-1871861028">PAY BY INVOICE</stringProp>
+              </collectionProp>
+            </collectionProp>
+            <boolProp name="UserParameters.per_iteration">true</boolProp>
+          </UserParameters>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="SaaS_SSCP_S003_SnB_V3_T05_CreateSubscription_SAP_V3" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+&quot;serviceDefinitionId&quot;: &quot;0adb248a-a8ac-42fd-ac48-ec089ad7893891&quot;,&#xd;
+&quot;operation&quot;: &quot;CREATE&quot;,&#xd;
+&quot;Preview&quot;: false,&#xd;
+&quot;createRequest&quot;: {&#xd;
+    &quot;idempotencyKey&quot;: &quot;202301214502test${__Random(001,9999)}p-000${__UUID()}&quot;,&#xd;
+    &quot;subscriptionId&quot;: &quot;p07218-0001t01-${__UUID()}-snbe-${__Random(0001,9999)}2&quot;,&#xd;
+    &quot;orgId&quot;: &quot;CSPSNBE_0721800${__UUID()}&quot;,&#xd;
+    &quot;projectId&quot;: &quot;CSPSNBE_0721800${__UUID()}&quot;,&#xd;
+    &quot;currency&quot;: &quot;USD&quot;,&#xd;
+    &quot;subscriptionType&quot;: &quot;COMMIT&quot;,&#xd;
+    &quot;productFamily&quot;: &quot;WAVEFRONT&quot;,&#xd;
+    &quot;paymentDetail&quot;: {&#xd;
+        &quot;address&quot;: {&#xd;
+            &quot;addressLine1&quot;: &quot;3304 HillView Ave&quot;,&#xd;
+            &quot;addressLine2&quot;: &quot;&quot;,&#xd;
+            &quot;city&quot;: &quot;Palo Alto&quot;,&#xd;
+            &quot;zipCode&quot;: &quot;94304&quot;,&#xd;
+            &quot;country&quot;: &quot;US&quot;&#xd;
+        },&#xd;
+        &quot;sellerPaymentMethodId&quot;: &quot;${P_Paymentoptionid}&quot;,&#xd;
+        &quot;sellerPaymentMethodType&quot;: &quot;${P_Paymentmethod_Type}&quot;,&#xd;
+        &quot;level&quot;: &quot;BILLING_ACCOUNT&quot;,&#xd;
+        &quot;projectId&quot;: &quot;default&quot;,&#xd;
+        &quot;billingAccountId&quot;: &quot;CSPSNBE_0721800${__UUID()}&quot;&#xd;
+    },&#xd;
+    &quot;offers&quot;: [&#xd;
+        {&#xd;
+            &quot;routeToMarket&quot;: &quot;DIRECT&quot;,&#xd;
+            &quot;purchaseQuantity&quot;: 2000,&#xd;
+            &quot;productId&quot;: &quot;TMO_TS&quot;,&#xd;
+            &quot;name&quot;: &quot;TMO_TS&quot;,&#xd;
+            &quot;billingModel&quot;: &quot;COMMIT_REQUIRED&quot;,&#xd;
+            &quot;offerCategory&quot;: &quot;PRIMARY&quot;,&#xd;
+            &quot;billingTerm&quot;: &quot;36&quot;,&#xd;
+            &quot;billingFrequency&quot;: &quot;ANNUAL&quot;,&#xd;
+            &quot;billingTermUom&quot;: &quot;MONTHS&quot;,&#xd;
+            &quot;offerType&quot;: &quot;COMMIT&quot;,&#xd;
+            &quot;region&quot;: &quot;LATAM&quot;,&#xd;
+            &quot;customerSegment&quot;: &quot;ACADEMIC&quot;,&#xd;
+            &quot;tierName&quot;: &quot;T4&quot;,&#xd;
+            &quot;chargeType&quot;: &quot;TIERED&quot;&#xd;
+        }&#xd;
+    ]&#xd;
+}&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">apigw-test.vmware.com</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">lt/spi/v3/subscriptions/transactions</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">csp-request-id</stringProp>
+                <stringProp name="Header.value">12345623</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Authorization</stringProp>
+                <stringProp name="Header.value">Bearer ${C_Access_Token}</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <UserParameters guiclass="UserParametersGui" testclass="UserParameters" testname="User Parameters" enabled="true">
+            <collectionProp name="UserParameters.names">
+              <stringProp name="1571310905">P_CustomerNum</stringProp>
+              <stringProp name="1987610183">P_Paymentoptionid</stringProp>
+              <stringProp name="1897709217">P_Paymentmethod_Type</stringProp>
+            </collectionProp>
+            <collectionProp name="UserParameters.thread_values">
+              <collectionProp name="-1587357978">
+                <stringProp name="1550374893">1954170660</stringProp>
+                <stringProp name="719554914">10585203</stringProp>
+                <stringProp name="-1871861028">PAY BY INVOICE</stringProp>
+              </collectionProp>
+              <collectionProp name="-404699023">
+                <stringProp name="-383272377">1207358368</stringProp>
+                <stringProp name="719586629">10586405</stringProp>
+                <stringProp name="-1871861028">PAY BY INVOICE</stringProp>
+              </collectionProp>
+              <collectionProp name="-46492817">
+                <stringProp name="-1946900096">1158038200</stringProp>
+                <stringProp name="719586630">10586406</stringProp>
+                <stringProp name="-1871861028">PAY BY INVOICE</stringProp>
+              </collectionProp>
+            </collectionProp>
+            <boolProp name="UserParameters.per_iteration">true</boolProp>
+          </UserParameters>
+          <hashTree/>
+          <BoundaryExtractor guiclass="BoundaryExtractorGui" testclass="BoundaryExtractor" testname="C_SID" enabled="true">
+            <stringProp name="BoundaryExtractor.useHeaders">false</stringProp>
+            <stringProp name="BoundaryExtractor.refname">C_SID</stringProp>
+            <stringProp name="BoundaryExtractor.lboundary">&quot;billingEngineSubscriptionId&quot;:&quot;</stringProp>
+            <stringProp name="BoundaryExtractor.rboundary">&quot;,</stringProp>
+            <stringProp name="BoundaryExtractor.default"></stringProp>
+            <boolProp name="BoundaryExtractor.default_empty_value">false</boolProp>
+            <stringProp name="BoundaryExtractor.match_number">1</stringProp>
+          </BoundaryExtractor>
+          <hashTree/>
+          <BoundaryExtractor guiclass="BoundaryExtractorGui" testclass="BoundaryExtractor" testname="C_ReferenceID" enabled="true">
+            <stringProp name="BoundaryExtractor.useHeaders">false</stringProp>
+            <stringProp name="BoundaryExtractor.refname">C_ReferenceID</stringProp>
+            <stringProp name="BoundaryExtractor.lboundary">&quot;referenceId&quot;:&quot;</stringProp>
+            <stringProp name="BoundaryExtractor.rboundary">&quot;,</stringProp>
+            <stringProp name="BoundaryExtractor.default"></stringProp>
+            <boolProp name="BoundaryExtractor.default_empty_value">false</boolProp>
+            <stringProp name="BoundaryExtractor.match_number">1</stringProp>
+          </BoundaryExtractor>
+          <hashTree/>
+          <BoundaryExtractor guiclass="BoundaryExtractorGui" testclass="BoundaryExtractor" testname="C_SubscriptionID" enabled="true">
+            <stringProp name="BoundaryExtractor.useHeaders">false</stringProp>
+            <stringProp name="BoundaryExtractor.refname">C_SubscriptionID</stringProp>
+            <stringProp name="BoundaryExtractor.lboundary">&quot;subscriptionId&quot;:&quot;</stringProp>
+            <stringProp name="BoundaryExtractor.rboundary">&quot;,</stringProp>
+            <stringProp name="BoundaryExtractor.default"></stringProp>
+            <boolProp name="BoundaryExtractor.default_empty_value">false</boolProp>
+            <stringProp name="BoundaryExtractor.match_number">1</stringProp>
+          </BoundaryExtractor>
+          <hashTree/>
+          <BoundaryExtractor guiclass="BoundaryExtractorGui" testclass="BoundaryExtractor" testname="C_Status" enabled="false">
+            <stringProp name="BoundaryExtractor.useHeaders">false</stringProp>
+            <stringProp name="BoundaryExtractor.refname">C_Status</stringProp>
+            <stringProp name="BoundaryExtractor.lboundary">&quot;,&quot;status&quot;:&quot;</stringProp>
+            <stringProp name="BoundaryExtractor.rboundary">&quot;,</stringProp>
+            <stringProp name="BoundaryExtractor.default"></stringProp>
+            <boolProp name="BoundaryExtractor.default_empty_value">false</boolProp>
+            <stringProp name="BoundaryExtractor.match_number">1</stringProp>
+            <stringProp name="Sample.scope">all</stringProp>
+          </BoundaryExtractor>
+          <hashTree/>
+        </hashTree>
+        <WhileController guiclass="WhileControllerGui" testclass="WhileController" testname="While Controller" enabled="true">
+          <stringProp name="WhileController.condition">${__javaScript(&quot;${C_Status}&quot; != &quot;PENDING_PROVISIONING&quot;)}</stringProp>
+        </WhileController>
+        <hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="SaaS_SSCP_S003_SnB_V3_T06_SubscriptionList_V1" enabled="true">
+            <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">{&#xd;
+&quot;billingEngineSubscriptionIds&quot;: [&#xd;
+   &quot;${C_SID}&quot;&#xd;
+ ]&#xd;
+}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">apigw-test.vmware.com</stringProp>
+            <stringProp name="HTTPSampler.port"></stringProp>
+            <stringProp name="HTTPSampler.protocol">https</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">lt/spi/v1/subscriptions/list</stringProp>
+            <stringProp name="HTTPSampler.method">POST</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+              <collectionProp name="HeaderManager.headers">
+                <elementProp name="" elementType="Header">
+                  <stringProp name="Header.name">Content-Type</stringProp>
+                  <stringProp name="Header.value">application/json</stringProp>
+                </elementProp>
+                <elementProp name="" elementType="Header">
+                  <stringProp name="Header.name">Authorization</stringProp>
+                  <stringProp name="Header.value">Bearer ${C_Access_Token}</stringProp>
+                </elementProp>
+              </collectionProp>
+            </HeaderManager>
+            <hashTree/>
+            <BoundaryExtractor guiclass="BoundaryExtractorGui" testclass="BoundaryExtractor" testname="C_Status" enabled="true">
+              <stringProp name="BoundaryExtractor.useHeaders">false</stringProp>
+              <stringProp name="BoundaryExtractor.refname">C_Status</stringProp>
+              <stringProp name="BoundaryExtractor.lboundary">&quot;,&quot;status&quot;:&quot;</stringProp>
+              <stringProp name="BoundaryExtractor.rboundary">&quot;,</stringProp>
+              <stringProp name="BoundaryExtractor.default"></stringProp>
+              <boolProp name="BoundaryExtractor.default_empty_value">false</boolProp>
+              <stringProp name="BoundaryExtractor.match_number">1</stringProp>
+              <stringProp name="Sample.scope">all</stringProp>
+            </BoundaryExtractor>
+            <hashTree/>
+          </hashTree>
+          <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Flow Control Action" enabled="false">
+            <intProp name="ActionProcessor.action">0</intProp>
+            <intProp name="ActionProcessor.target">0</intProp>
+            <stringProp name="ActionProcessor.duration">0</stringProp>
+          </TestAction>
+          <hashTree/>
+          <DebugSampler guiclass="TestBeanGUI" testclass="DebugSampler" testname="Debug Sampler" enabled="true">
+            <boolProp name="displayJMeterProperties">false</boolProp>
+            <boolProp name="displayJMeterVariables">true</boolProp>
+            <boolProp name="displaySystemProperties">false</boolProp>
+          </DebugSampler>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="SaaS_SSCP_S003_SnB_V3_T07_SubscriptionList_V3" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+&quot;billingEngineSubscriptionIds&quot;: [&#xd;
+   &quot;${C_SID}&quot;&#xd;
+ ]&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">apigw-test.vmware.com</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">lt/spi/v3/subscriptions/list</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Authorization</stringProp>
+                <stringProp name="Header.value">Bearer ${C_Access_Token}</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="SaaS_SSCP_S003_SnB_V3_T08_ActivateSubscription_SAP_V3" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+&quot;messageType&quot;: &quot;subscription-transaction-from-csp-event&quot;,&#xd;
+&quot;messageId&quot;: &quot;test3${__UUID()}p07218-0001t01&quot;,&#xd;
+&quot;publisherId&quot;: &quot;cf8108a0-79ac-4632-ad02-3270efb2f75d&quot;,&#xd;
+&quot;message&quot;: {&#xd;
+    &quot;seller&quot;: &quot;VMWARE&quot;,&#xd;
+    &quot;operation&quot;: &quot;OFFER_STATUS&quot;,&#xd;
+    &quot;requestedBy&quot;: {&#xd;
+        &quot;entityType&quot;: &quot;UNKNOWN&quot;&#xd;
+    },&#xd;
+    &quot;offerStatusRequest&quot;: {&#xd;
+        &quot;idempotencyKey&quot;: &quot;Gtest94${__UUID()}p07218202${__Random(0001,9999)}-G0001t01&quot;,&#xd;
+        &quot;billingEngineSubscriptionId&quot;: &quot;${C_SID}&quot;,&#xd;
+        &quot;offers&quot;: [&#xd;
+            {&#xd;
+                &quot;referenceId&quot;: &quot;${C_ReferenceID}&quot;,&#xd;
+                &quot;purchaseQuantity&quot;: 1,&#xd;
+                &quot;statusChange&quot;: {&#xd;
+                    &quot;fromStatus&quot;: &quot;PENDING_PROVISIONING&quot;,&#xd;
+                    &quot;toStatus&quot;: &quot;ACTIVE&quot;,&#xd;
+                    &quot;actionDateTime&quot;: &quot;2023-05-02T04:46:08.000Z&quot;,&#xd;
+                    &quot;changeReasons&quot;: [&#xd;
+                        {&#xd;
+                            &quot;code&quot;: &quot;PROVISIONING_COMPLETE&quot;,&#xd;
+                            &quot;message&quot;: &quot;PROVISIONING COMPLETE&quot;&#xd;
+                        }&#xd;
+                    ],&#xd;
+                    &quot;deprovisioning&quot;: null&#xd;
+                }&#xd;
+            }&#xd;
+        ],&#xd;
+        &quot;subscriptionId&quot;: &quot;${C_SubscriptionID}&quot;&#xd;
+    },&#xd;
+    &quot;preview&quot;: false&#xd;
+},&#xd;
+&quot;attributes&quot;: {&#xd;
+    &quot;billingEngine&quot;: &quot;SAP&quot;,&#xd;
+    &quot;seller&quot;: &quot;VMWARE&quot;&#xd;
+}&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">apigw-test.vmware.com</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">lt/spi/v3/subscriptions/offer-status</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Authorization</stringProp>
+                <stringProp name="Header.value">Bearer ${C_Access_Token}</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+        </hashTree>
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <url>true</url>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+        <DebugSampler guiclass="TestBeanGUI" testclass="DebugSampler" testname="Debug Sampler" enabled="true">
+          <boolProp name="displayJMeterProperties">false</boolProp>
+          <boolProp name="displayJMeterVariables">true</boolProp>
+          <boolProp name="displaySystemProperties">false</boolProp>
+        </DebugSampler>
+        <hashTree/>
+      </hashTree>
+    </hashTree>
+  </hashTree>
+</jmeterTestPlan>
